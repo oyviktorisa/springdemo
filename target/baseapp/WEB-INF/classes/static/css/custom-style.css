@@ -1,0 +1,16 @@
+.middle-text{
+	vertical-align: middle !important;
+	text-align: center;
+}
+
+.right-text{
+	text-align: right;
+}
+
+.left-text{
+	text-align: left;
+}
+
+.center-text{
+	text-align: center;
+}

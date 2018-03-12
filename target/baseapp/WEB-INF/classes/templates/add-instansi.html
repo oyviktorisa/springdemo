@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fragments/header :: head">
+
+</head>
+
+<body class="fixed-nav">
+
+	<div id="wrapper">
+		<div th:replace="fragments/header :: nav">&nbsp;</div>
+
+		<div id="page-wrapper" class="gray-bg">
+			<div th:replace="fragments/header :: topnav">&nbsp;</div>
+
+			<div class="row wrapper white-bg page-heading">
+				<div class="col-lg-10">
+					<h2 th:if="${!isEdit}">TAMBAH INSTANSI</h2>
+					<h2 th:if="${isEdit}">EDIT INSTANSI</h2>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>
+			<div class="row" th:if="${enable}">
+				<div class="col-lg-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							<form th:action="@{/user/add-instansi}" th:object="${instansi}"
+								method="post">
+								<input type="hidden" th:value="${instansi.id}" th:attr="name='id'" />
+								<div class="form-group">
+									<label for="nama">Nama<span style="color: red;">*</span></label>
+									<input class="form-control" type="text" th:field="*{nama}" th:disabled="${isEdit}"/>
+									<p class="text text-danger"
+										th:if="${#fields.hasErrors('nama')}"
+										th:errors="*{nama}"></p>
+								</div>
+								<div class="form-group">
+									<label for="nama">Deskripsi<span style="color: red;">*</span></label>
+									<input class="form-control" type="text" th:field="*{deskripsi}" th:disabled="${isEdit}"/>
+									<p class="text text-danger"
+										th:if="${#fields.hasErrors('deskripsi')}"
+										th:errors="*{deskripsi}"></p>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success" type="submit" name="action"
+										value="save">Simpan</button>
+									<button class="btn btn-danger" type="submit" name="action"
+										value="cancel">Batal</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<th:block th:replace="fragments/header :: foot">
+
+	</th:block>
+</body>
+
+</html>
+
+
+
